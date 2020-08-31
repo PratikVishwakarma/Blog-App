@@ -1,13 +1,17 @@
 import React from 'react'
 import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import { createStackNavigator } from 'react-navigation-stack'
+import { Provider } from './src/context/BlogContext'
 import IndexScreen from './src/screens/IndexScreen'
-import { BlogProvider } from './src/context/BlogContext'
+import ShowScreen from './src/screens/ShowScreen'
+import CreateBlogScreen from './src/screens/CreateBlogScreen'
 
 
 const navigator = createStackNavigator(
   {
-    Index: IndexScreen
+    Index: IndexScreen,
+    Show: ShowScreen,
+    CreateBlog: CreateBlogScreen
   },
   {
     initialRouteName: 'Index',
@@ -19,7 +23,7 @@ const navigator = createStackNavigator(
 const App = createAppContainer(navigator)
 
 export default () => {
-  return <BlogProvider>
+  return <Provider>
     <App />
-  </BlogProvider>
+  </Provider>
 } 
