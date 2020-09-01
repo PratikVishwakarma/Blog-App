@@ -1,20 +1,21 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { Entypo } from '@expo/vector-icons'
+import { Context } from '../context/BlogContext'
 
 const ShowScreen = ({ navigation }) => {
-    const blogPost = navigation.getParam('blogPost')
+    const { state } = useContext(Context)
+    const blogPost = state.find((blog) => blog.id === navigation.getParam('id'))
     return <View>
         <Text>Show Screen {blogPost.title}</Text>
     </View>
 }
 
 ShowScreen.navigationOptions = ({ navigation }) => {
-    const blogPost = navigation.getParam('blogPost')
     return {
         headerRight: (
-            <TouchableOpacity onPress={() => { navigation.navigate('EditBlog', { blogPost: blogPost }) }}>
-                <Entypo style={{ fontSize: 30 }} name='edit' />
+            <TouchableOpacity onPress={() => { navigation.navigate('EditBlog', { id: navigation.getParam('id') }) }}>
+                <Entypo style={{ fontSize: 20, margin: 8 }} name='edit' />
             </TouchableOpacity>
         )
     }

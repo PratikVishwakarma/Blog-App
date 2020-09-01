@@ -13,7 +13,7 @@ const IndexScreen = ({ navigation }) => {
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => {
                 return <TouchableOpacity onPress={() => {
-                    navigation.navigate('Show', { blogPost: item })
+                    navigation.navigate('Show', { id: item.id })
                 }}>
                     <View style={styles.itemView}>
                         <View>
