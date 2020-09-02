@@ -8,7 +8,7 @@ const CreateBlogScreen = ({ navigation }) => {
     return <BlogPostForm
         onSubmit={(blog) => {
             addBlogPost({ title: blog.title, content: blog.content, id: blog.id },
-                () => { navigation.navigate('Index') })
+                () => { navigation.pop() })
         }}
         initialValues={{ title: '', content: '' }}
         isAdd={true}

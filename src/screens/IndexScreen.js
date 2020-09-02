@@ -1,10 +1,23 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { View, Text, StyleSheet, FlatList, Button, TouchableOpacity } from 'react-native'
 import { Context } from '../context/BlogContext'
 import { Feather } from '@expo/vector-icons'
 const IndexScreen = ({ navigation }) => {
-    const { state, addBlogPost, deleteBlogPost } = useContext(Context)
-    console.log(state)
+
+    const { state, getBlogPost, deleteBlogPost } = useContext(Context)
+    useEffect(() => {
+        getBlogPost()
+
+        // to call the getBlogPost function whenever the index  screen reapier on device
+        const listener = navigation.addListener('didFocus', () => {
+            getBlogPost()
+        })
+
+        return () => {
+            listener.remove()
+        }
+    }, [])
+
     return <View style={{ backgroundColor: '#FFFFFF', flex: 1 }}>
         <Text>Index Screen</Text>
         <FlatList
